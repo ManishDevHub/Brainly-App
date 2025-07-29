@@ -6,4 +6,4 @@ const UserSchema = new Schema
     password: String ,
 })
 
- export const UserModal = new Model(UserSchema ,"User"  )
+ export const UserModal = new Model(UserSchema ,"User"  );
