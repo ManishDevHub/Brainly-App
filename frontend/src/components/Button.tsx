@@ -6,8 +6,8 @@ export interface ButtonProps {
   variant: "primary" | "secondary" ;
   size : "sm" | "md" | "lg";
   text: string;
-  startIcon?: ReactElement;
-  endIcon? : ReactElement;
+  startIcon?: any;
+  endIcon? : any;
   onClick : () => void;
 }
 
@@ -23,4 +23,4 @@ export const Button = (props: ButtonProps) => {
 
 }
 
-<Button endIcon={"+"} variant="primary" size="md" onClick={()=>{}} text={"aaa"} />
+<Button endIcon={"+"} variant="primary" size="md" onClick={()=>{}} text={"aaa"}  startIcon={">"}/>
