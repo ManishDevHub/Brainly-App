@@ -87,10 +87,14 @@ app.delete("/api/v1/content", async (req, res) => {
 app.post("/api/v1/brain/share", UserMiddleware,  async (req, res) => {
   const share = req.body.share;
  if(share) {
+  const hash = random(10)
  await LinkModal.create({
     //@ts-ignore
     userId:req.userId,
-    hash: random(10)
+    hash: hash
+  })
+  res.json({
+    message: "/share/" + hash
   })
   }else{
    await LinkModal.deleteOne({
@@ -100,9 +104,38 @@ app.post("/api/v1/brain/share", UserMiddleware,  async (req, res) => {
  }
 
  res.json({
-  message: "Updated sharable link"
+  message: "Removed link"
  })
 });
-app.get("/api/v1/brain/:shareLink", (req, res) => {});
+app.get("/api/v1/brain/:shareLink", async (req, res) => {
+  const hash = req.params.shareLink;
 
-app.listen(3000);
+  const link = await LinkModal.findOne({ hash });
+
+  if (!link) {
+    return res.status(411).json({
+      message: "Sorry incorrect input"
+    });
+  }
+
+  
+  const content = await ContentModal.find({
+    userId: link.userId
+  });
+
+
+  const user = await UserModal.findOne({
+    _id: link.userId
+  });
+
+  if (!user) {
+    return res.status(411).json({
+      message: "User not found, error should ideally not happen"
+    });
+  }
+
+  res.json({
+    username: user.username,
+    content: content
+  });
+});
