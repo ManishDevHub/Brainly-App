@@ -1,9 +1,10 @@
 import express from "express";
-import mongoose from "mongoose";
+import {JWT_PASSWORD } from "./config";
 import jwt from "jsonwebtoken";
-import { ContentModal, UserModal } from "./db";
+import { ContentModal, LinkModal, UserModal } from "./db";
 import { UserMiddleware } from "./middleware";
-const JWT_PASSWORD = "123435451546";
+import { random } from "./utils";
+console.log("🔐 JWT_PASSWORD loaded as:", JWT_PASSWORD);
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use(express.json());
 app.post("/api/v1/signup", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+
   try {
     await UserModal.create({
       username: username,
@@ -82,7 +84,25 @@ app.delete("/api/v1/content", async (req, res) => {
         message: "Content deleted"
     })
 });
-app.post("/api/v1/brain/share", (req, res) => {});
+app.post("/api/v1/brain/share", UserMiddleware,  async (req, res) => {
+  const share = req.body.share;
+ if(share) {
+ await LinkModal.create({
+    //@ts-ignore
+    userId:req.userId,
+    hash: random(10)
+  })
+  }else{
+   await LinkModal.deleteOne({
+      //@ts-ignore
+      userId: req.userId
+    });
+ }
+
+ res.json({
+  message: "Updated sharable link"
+ })
+});
 app.get("/api/v1/brain/:shareLink", (req, res) => {});
 
 app.listen(3000);
