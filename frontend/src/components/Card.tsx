@@ -1,4 +1,7 @@
+import { DeleteIcon } from "../icons/Deleteicon";
 import { PlusIcon } from "../icons/PlusIcon";
+import { ShareIcon } from "../icons/ShareIcon";
+import { TextIcon } from "../icons/TextIcon";
 
 
 export function Card (){
@@ -8,22 +11,26 @@ export function Card (){
             <div className="flex justify-between">
         <div className="flex items-center text-md">
                 <div className="text-gray-500 pr-2">
-                     <PlusIcon />
+                     <TextIcon/>
                 </div>
            
             Project ideas
             </div>
-            <div className="flex">
+            <div className="flex items-center">
                 <div className="pr-2 text-gray-500">
-                     <PlusIcon />
+                     <ShareIcon />
                 </div>
-                <div className="pr-2 text-gray-500">
+                <div className="pl-4 text-gray-500">
                     
-           <PlusIcon />
+           < DeleteIcon />
                 </div>
           
             </div>
         </div>
+        <iframe className="w-full" src="https://www.youtube.com/embed/VUoa94WUtWA?si=xwtc_Liy3IvlJeQL"
+         title="YouTube video player" 
+        frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
+         web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
     </div>
     </div>

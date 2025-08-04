@@ -16,7 +16,7 @@ function App() {
   text="Share brain"
   size="sm"
   onClick={() => console.log("add click")}
-  
+  startIcon={<ShareIcon/>}
 />
 <Button
   variant="secondary"
