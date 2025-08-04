@@ -1,4 +1,5 @@
 import express from "express";
+
 import {JWT_PASSWORD } from "./config";
 import jwt from "jsonwebtoken";
 import { ContentModal, LinkModal, UserModal } from "./db";
@@ -87,6 +88,17 @@ app.delete("/api/v1/content", async (req, res) => {
 app.post("/api/v1/brain/share", UserMiddleware,  async (req, res) => {
   const share = req.body.share;
  if(share) {
+   const existingLink = await LinkModal.findOne({
+    //@ts-ignore
+    userId: req.userId
+  })
+if(existingLink){
+  res.json({
+    hash: existingLink.hash
+  })
+  return;
+}
+
   const hash = random(10)
  await LinkModal.create({
     //@ts-ignore
