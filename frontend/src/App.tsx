@@ -9,7 +9,8 @@ function App() {
   
 
   return (
-    <>
+    <div className='p-4'>
+      <div className='flex justify-end gap-4'>
      
      <Button
   variant="primary"
@@ -26,9 +27,15 @@ function App() {
   startIcon={<PlusIcon size='md'/>}
    
 />
+</div>
+<div className='flex gap-4'>
 
-<Card/>
-    </>
+
+
+<Card type='twitter' link ="https://x.com/ramuk13476/status/1950637137164222855" title='First post' />
+<Card type='youtube' link ="https://www.youtube.com/watch?v=p8gvGCDQpgo" title='First video' />
+</div>
+    </div>
 
     
   )
