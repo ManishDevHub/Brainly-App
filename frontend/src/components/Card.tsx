@@ -13,7 +13,7 @@ interface CardProps {
 export function Card ({title , link, type}:CardProps){
     return <div>
         <div className="p-4 bg-white rounded-md shadow-md border-gray-200
-        max-w-72 border min-h-48 min-w-72">
+        max-w-[310px] border min-h-[210px] min-w-[310px]">
             <div className="flex justify-between">
         <div className="flex items-center text-md">
                 <div className="text-gray-500 pr-2">
@@ -40,9 +40,13 @@ export function Card ({title , link, type}:CardProps){
         frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
          web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> }
              
-{type === "twitter" && <blockquote className="twitter-tweet">
+{type === "twitter" && (<div className="max-h-[150px] overflow-y-auto pr-2">
+<blockquote className="twitter-tweet">
   <a href={link.replace("x.com", "twitter.com" )}></a> 
-</blockquote> }
+</blockquote> 
+</div>
+)
+}
 
 
         </div>
