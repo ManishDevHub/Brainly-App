@@ -40,7 +40,7 @@ export function Card ({title , link, type}:CardProps){
         frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
          web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe> }
              
-{type === "twitter" && (<div className="max-h-[150px] overflow-y-auto pr-2">
+{type === "twitter" && (<div className="max-h-[150px] overflow-y-auto pr-2 overflow-x-hidden">
 <blockquote className="twitter-tweet">
   <a href={link.replace("x.com", "twitter.com" )}></a> 
 </blockquote> 
