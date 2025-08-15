@@ -10,6 +10,7 @@ export interface ButtonProps {
   startIcon?: ReactElement;
   endIcon? : ReactElement;
   onClick? : () => void;
+  fullWidth?: boolean,
 }
 
 const variantStyle = {
@@ -33,8 +34,9 @@ export const Button = ({
   startIcon,
   endIcon,
   onClick,
+  fullWidth,
 }: ButtonProps) => {
- return (<button onClick={onClick} className={`${variantStyle[variant]} ${defaultStyle} ${sizeStyle[size]} flex items-center`}>
+ return (<button onClick={onClick} className={`${variantStyle[variant]} ${defaultStyle} ${fullWidth ? " w-full justify-center items-center " : " "} ${sizeStyle[size]} flex items-center`}>
    {startIcon ? <div className="pr-2"> {startIcon}</div>: null}  {text} {endIcon}</button>)
  
   
